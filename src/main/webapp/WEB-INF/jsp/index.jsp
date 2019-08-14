@@ -98,7 +98,7 @@
 							</td>
 							<td rowspan="2" class="one_three"><a class="opacity5"
 								href="/VideoSSM/courseWithVideoAndSubject.do?subjectId=2"> <img
-									src="/VideoSSM/static/z/java.jpg" alt="" class="image "
+									src="/Video/static/z/java.jpg" alt="" class="image "
 									draggable="false">
 									<div class="headline">
 										<span>Java教程</span> <img src="/VideoSSM/static/z/arrow.png"
