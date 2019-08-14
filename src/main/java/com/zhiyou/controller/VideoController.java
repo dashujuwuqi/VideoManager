@@ -1,5 +1,9 @@
 package com.zhiyou.controller;
 
-public class VideoController {
 
+import org.springframework.stereotype.Controller;
+
+
+@Controller
+public class VideoController {
 }
