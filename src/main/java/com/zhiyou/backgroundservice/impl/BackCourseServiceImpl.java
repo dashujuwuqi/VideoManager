@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.zhiyou.backgroundservice.CourseService;
+import com.zhiyou.backgroundservice.BackCourseService;
 import com.zhiyou.dao.CourseMapper;
 import com.zhiyou.model.Course;
 import com.zhiyou.model.CourseExample;
 @Service
-public class CourseServiceImpl implements CourseService{
+public class BackCourseServiceImpl implements BackCourseService{
 
 	@Autowired
 	CourseMapper cm;

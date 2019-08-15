@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.github.pagehelper.PageHelper;
-import com.zhiyou.backgroundservice.CourseService;
-import com.zhiyou.backgroundservice.SpeakerService;
-import com.zhiyou.backgroundservice.VideoService;
+import com.zhiyou.backgroundservice.BackCourseService;
+import com.zhiyou.backgroundservice.BackSpeakerService;
+import com.zhiyou.backgroundservice.BackVideoService;
 import com.zhiyou.backgroundutil.VideoResult;
 import com.zhiyou.model.Course;
 import com.zhiyou.model.CourseExample;
@@ -27,13 +27,13 @@ import com.zhiyou.model.Video;
 import com.zhiyou.model.VideoExample;
 
 @Controller
-public class VideoController {
+public class BackVideoController {
 	@Autowired
-	VideoService videoService;
+	BackVideoService videoService;
 	@Autowired
-	SpeakerService speakerService;
+	BackSpeakerService speakerService;
 	@Autowired
-	CourseService courseService;
+	BackCourseService courseService;
 	@RequestMapping("Back-Video-Show")
 	public String videoShow(HttpServletRequest req) {
 		VideoExample videoExample=new VideoExample();

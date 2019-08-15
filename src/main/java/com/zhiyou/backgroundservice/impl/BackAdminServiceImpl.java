@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.zhiyou.backgroundservice.AdminService;
+import com.zhiyou.backgroundservice.BackAdminService;
 import com.zhiyou.dao.AdminMapper;
 import com.zhiyou.model.Admin;
 import com.zhiyou.model.AdminExample;
 @Service
-public class AdminServiceImpl implements AdminService{
+public class BackAdminServiceImpl implements BackAdminService{
 	
 	@Autowired
 	AdminMapper am;

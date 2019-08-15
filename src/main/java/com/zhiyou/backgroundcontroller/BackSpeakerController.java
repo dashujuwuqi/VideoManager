@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
-import com.zhiyou.backgroundservice.SpeakerService;
+import com.zhiyou.backgroundservice.BackSpeakerService;
 import com.zhiyou.backgroundutil.VideoResult;
 import com.zhiyou.model.Speaker;
 import com.zhiyou.model.SpeakerExample;
 
 @Controller
-public class SpeakerController {
+public class BackSpeakerController {
 
 	@Autowired
-	SpeakerService speakerService;
+	BackSpeakerService speakerService;
 
 	@RequestMapping("Back-Speaker-Show")
 	public String speakerShow(HttpServletRequest req) {

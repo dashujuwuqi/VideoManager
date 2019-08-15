@@ -5,8 +5,8 @@ import com.zhiyou.model.AdminExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface AdminService {
-	//111
+public interface BackAdminService {
+	//111222
     long countByExample(AdminExample example);
 
     int deleteByExample(AdminExample example);

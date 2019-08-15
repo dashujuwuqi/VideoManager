@@ -5,7 +5,7 @@ import com.zhiyou.model.UserExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface UserService {
+public interface BackUserService {
     long countByExample(UserExample example);
 
     int deleteByExample(UserExample example);

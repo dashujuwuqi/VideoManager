@@ -5,7 +5,7 @@ import com.zhiyou.model.SpeakerExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface SpeakerService {
+public interface BackSpeakerService {
     long countByExample(SpeakerExample example);
 
     int deleteByExample(SpeakerExample example);

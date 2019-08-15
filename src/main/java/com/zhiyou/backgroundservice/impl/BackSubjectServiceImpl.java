@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.zhiyou.backgroundservice.SubjectService;
+import com.zhiyou.backgroundservice.BackSubjectService;
 import com.zhiyou.dao.SubjectMapper;
 import com.zhiyou.model.Subject;
 import com.zhiyou.model.SubjectExample;
 @Service
-public class SubjectServiceImpl implements SubjectService{
+public class BackSubjectServiceImpl implements BackSubjectService{
 	
 	@Autowired
 	SubjectMapper sm;

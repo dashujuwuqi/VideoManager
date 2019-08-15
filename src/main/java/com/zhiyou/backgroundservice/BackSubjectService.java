@@ -5,7 +5,7 @@ import com.zhiyou.model.SubjectExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface SubjectService {
+public interface BackSubjectService {
     long countByExample(SubjectExample example);
 
     int deleteByExample(SubjectExample example);

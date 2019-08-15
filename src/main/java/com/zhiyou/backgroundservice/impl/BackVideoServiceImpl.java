@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.zhiyou.backgroundservice.VideoService;
+import com.zhiyou.backgroundservice.BackVideoService;
 import com.zhiyou.dao.VideoMapper;
 import com.zhiyou.model.Video;
 import com.zhiyou.model.VideoExample;
 @Service
-public class VideoServiceImpl implements VideoService{
+public class BackVideoServiceImpl implements BackVideoService{
 	
 	@Autowired
 	VideoMapper vm;

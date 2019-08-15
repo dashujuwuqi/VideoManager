@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
-import com.zhiyou.backgroundservice.CourseService;
-import com.zhiyou.backgroundservice.SubjectService;
+import com.zhiyou.backgroundservice.BackCourseService;
+import com.zhiyou.backgroundservice.BackSubjectService;
 import com.zhiyou.backgroundutil.VideoResult;
 import com.zhiyou.model.Course;
 import com.zhiyou.model.CourseExample;
@@ -22,11 +22,11 @@ import com.zhiyou.model.Subject;
 import com.zhiyou.model.SubjectExample;
 
 @Controller
-public class CourseController {
+public class BackCourseController {
 	@Autowired
-	CourseService courseService;
+	BackCourseService courseService;
 	@Autowired
-	SubjectService subjectService;
+	BackSubjectService subjectService;
 
 	@RequestMapping("Back-Course-Show")
 	public String courseShow(HttpServletRequest req) {

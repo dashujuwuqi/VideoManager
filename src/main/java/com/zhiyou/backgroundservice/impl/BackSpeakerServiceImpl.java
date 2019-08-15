@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.zhiyou.backgroundservice.SpeakerService;
+import com.zhiyou.backgroundservice.BackSpeakerService;
 import com.zhiyou.dao.SpeakerMapper;
 import com.zhiyou.model.Speaker;
 import com.zhiyou.model.SpeakerExample;
 @Service
-public class SpeakerServiceImpl implements SpeakerService{
+public class BackSpeakerServiceImpl implements BackSpeakerService{
 	@Autowired
 	SpeakerMapper sm;
 	@Override

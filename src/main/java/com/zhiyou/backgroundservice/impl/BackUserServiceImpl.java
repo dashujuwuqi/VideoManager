@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.zhiyou.backgroundservice.UserService;
+import com.zhiyou.backgroundservice.BackUserService;
 import com.zhiyou.dao.UserMapper;
 import com.zhiyou.model.User;
 import com.zhiyou.model.UserExample;
 @Service
-public class UserServiceImpl implements UserService{
+public class BackUserServiceImpl implements BackUserService{
 
 	@Autowired
 	UserMapper um;

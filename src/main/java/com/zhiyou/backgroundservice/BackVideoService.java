@@ -5,7 +5,7 @@ import com.zhiyou.model.VideoExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface VideoService {
+public interface BackVideoService {
     long countByExample(VideoExample example);
 
     int deleteByExample(VideoExample example);

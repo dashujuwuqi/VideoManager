@@ -5,7 +5,7 @@ import com.zhiyou.model.CourseExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface CourseService {
+public interface BackCourseService {
     long countByExample(CourseExample example);
 
     int deleteByExample(CourseExample example);
