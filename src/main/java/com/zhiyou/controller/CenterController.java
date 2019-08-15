@@ -18,11 +18,14 @@ import com.zhiyou.service.center.CenterService;
 public class CenterController {
 	@Autowired
 	CenterService centerService;
-	
-    @RequestMapping("hello")
-    public String Hello() {
-		return "hello";
-    }
+//	//用户的前台登录功能临时使用
+//    @RequestMapping("havelogin")
+//    public String HaveLogin(String name,String password) throws Exception{
+//   	     System.out.println(name);
+//   	     System.out.println(password);
+//   	     
+// 	return "forward";  
+//    }
     
     //前台修改密码方法
     @RequestMapping("updatePassword")
@@ -44,7 +47,7 @@ public class CenterController {
     public void validataController(String Password,HttpServletRequest req,HttpServletResponse resp) throws IOException{
         User u = (User) req.getSession().getAttribute("user");
         if(!((u.getPassword()).equals(Password))){
-     	   resp.getWriter().write("1");
+     	   resp.getWriter().write("1"); 	   
      	   return;
         }
         resp.getWriter().write("2");
@@ -63,8 +66,7 @@ public class CenterController {
      	  centerService.update(u);
  	   } catch (Exception e) {
  		// TODO: handle exception
- 	   }
-       
+ 	   }       
         req.getSession().setAttribute("user", u);
         
  		//自动获取了输入流输出流
