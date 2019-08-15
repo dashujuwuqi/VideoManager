@@ -72,10 +72,10 @@
 	
 		<!--面包屑导航-->
 		
-		<div class="container mian-nav">公开课 / ${video.course.subject.subjectName }</div>
+		<div class="container mian-nav">公开课 / ${result.data.videoPlay.course.subject.subjectName }</div>
 	
 		
-		<input id="videoId" value="${video.videoId }" type="hidden">
+		<input id="videoId" value="${result.data.videoPlay.videoId }" type="hidden">
 		
 		<div id="content">
 				<div class="intro">
@@ -83,37 +83,37 @@
 						<div class="v-intro">
 							<div class="left">
 								<c:if test="${user != null }">
-								<video id="videoPlayer" src="${video.videoUrl} "
+								<video id="videoPlayer" src="${result.data.videoPlay.videoUrl} "
 									class="video-js vjs-default-skin" controls="controls"
-									poster="${video.imageUrl }" data-setup="{}" height="280" width="627">
+									poster="${result.data.videoPlay.imageUrl }" data-setup="{}" height="280" width="627">
 								</video>
 								</c:if>
 								<c:if test="${empty user}">
 								<video id="videoPlayer" src=""
 									class="video-js vjs-default-skin" controls="controls"
-									poster="${video.imageUrl }" data-setup="{}" height="280" width="627">
+									poster="${result.data.videoPlay.imageUrl }" data-setup="{}" height="280" width="627">
 								</video>
 								</c:if>
 							</div>
 
 							<div class="right">
-								<p class="right-title">${video.title}</p>
+								<p class="right-title">${result.data.videoPlay.title}</p>
 								<div class="avatar">
-									<span style="background-image: url(${video.speaker.picUrl})"></span>
+									<span style="background-image: url(${result.data.videoPlay.speaker.picUrl})"></span>
 									<p>
-										<b>${video.speaker.speakerJob }：${video.speaker.speakerName }</b><br>
-										<i>${video.speaker.speakerDesc}</i>
+										<b>${result.data.videoPlay.speaker.speakerJob }：${result.data.videoPlay.speaker.speakerName }</b><br>
+										<i>${result.data.videoPlay.speaker.speakerDesc}</i>
 									</p>
 								</div>
 								<p class="video-intro">
-									<span>本节内容：</span>${video.detail}
+									<span>本节内容：</span>${result.data.videoPlay.detail}
 								</p>
 							</div>
 						</div>
 
 						<div class="kcjs">
 							<p class="title">课程介绍</p>
-							<p class="content">${video.course.courseDesc }</p>
+							<p class="content">${result.data.videoPlay.course.courseDesc }</p>
 						</div>
 
 					</div>
@@ -125,7 +125,7 @@
 				<div class="container">
 					<p class="title">目录</p>
 
-                  <c:forEach items="${course }" var="j"> 
+                  <c:forEach items="${result.data.list}" var="j"> 
 					<c:forEach items="${j.videos }" var="i">
 					<div class="chapter">
 						<p class="biaoti">

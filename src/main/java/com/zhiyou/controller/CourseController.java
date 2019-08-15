@@ -33,6 +33,6 @@ public class CourseController {
 		result.setMsg("成功了");
 		result.setStatus(200);
 		req.setAttribute("result",result);
-		return "CourseShow";
+		return "foreground/CourseShow";
 	}
 }
