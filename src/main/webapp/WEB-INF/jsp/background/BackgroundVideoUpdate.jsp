@@ -86,14 +86,14 @@ b {
 
 		<form id="infoForm" class="form-horizontal" method="post"
 			action="/VideoSSM/videoUpdate.do">
-            <input name="videoId" value="${video.videoId }" type="hidden">
+            <input name="videoId" value="${result.data.video.videoId }" type="hidden">
        
 			<div class="form-group">
 				<label for="subjectId" class="col-sm-2 control-label">视频标题</label>
 				<div class="col-sm-10">
 
 					<input class="form-control" name="title" id="title"
-						value="${video.title}" type="text">
+						value="${result.data.video.title}" type="text">
 
 
 				</div>
@@ -104,9 +104,9 @@ b {
 
 					<select name="speakerId" id="speakerId" class="form-control">
 						<option value="0" selected="selected">请选择讲师</option>
-						<c:forEach items="${speaker}" var="i">
+						<c:forEach items="${result.data.speaker}" var="i">
 							<option value="${i.id}"
-							 <c:if test="${video.speaker.id==i.id}">selected</c:if>	>${i.speakerName}</option>
+							 <c:if test="${result.data.video.speaker.id==i.id}">selected</c:if>	>${i.speakerName}</option>
 						</c:forEach>
 					</select>
 				</div>
@@ -118,9 +118,9 @@ b {
 
 					<select name="courseId" id="courseId" class="form-control">
 						<option value="0" selected="selected">请选择所选择所属课程</option>
-						<c:forEach items="${course}" var="j">
+						<c:forEach items="${result.data.course}" var="j">
 							<option value="${j.id}"
-							<c:if test="${video.course.id==j.id}">selected</c:if>
+							<c:if test="${result.data.video.course.id==j.id}">selected</c:if>
 							>${j.courseTitle}</option>
 						</c:forEach>
 					</select>
@@ -131,21 +131,21 @@ b {
 			<div class="form-group">
 				<label for="time" class="col-sm-2 control-label">视频时长</label>
 				<div class="col-sm-10">
-					<input class="form-control" id="time" value="${video.time}"
+					<input class="form-control" id="time" value="${result.data.video.time}"
 						name="time" rows="3"></input>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="imageUrl" class="col-sm-2 control-label">封面图片地址</label>
 				<div class="col-sm-10">
-					<input class="form-control" id="imageUrl" value="${video.imageUrl}"
+					<input class="form-control" id="imageUrl" value="${result.data.video.imageUrl}"
 						name="imageUrl" rows="3"></input>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="videoUrl" class="col-sm-2 control-label">视频播放地址</label>
 				<div class="col-sm-10">
-					<input class="form-control" id="videoUrl" value="${video.videoUrl}"
+					<input class="form-control" id="videoUrl" value="${result.data.video.videoUrl}"
 						name="videoUrl"  rows="3"></input>
 				</div>
 			</div>
@@ -153,7 +153,7 @@ b {
 				<label for="detail" class="col-sm-2 control-label">备注</label>
 				<div class="col-sm-10">
 					<textarea class="form-control" id="detail"
-						name="detail" placeholder="" rows="3">${video.detail}</textarea>
+						name="detail" placeholder="" rows="3">${result.data.video.detail}</textarea>
 				</div>
 			</div>
 			<div class="form-group">

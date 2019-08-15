@@ -1,12 +1,11 @@
-package com.zhiyou.dao;
+package com.zhiyou.backgroundservice;
 
 import com.zhiyou.model.Video;
 import com.zhiyou.model.VideoExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
-public interface VideoMapper {
+public interface VideoService {
     long countByExample(VideoExample example);
 
     int deleteByExample(VideoExample example);
