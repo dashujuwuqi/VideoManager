@@ -88,7 +88,7 @@ b {
 
 		<form id="infoForm" class="form-horizontal" action="/VideoSSM/speakerUpdate.do">
 
-			<input name="id" value="${speaker.id }" type="hidden">
+			<input name="id" value="${result.data.id }" type="hidden">
 
 			
 
@@ -96,28 +96,28 @@ b {
 				<label for="subjectTitle" class="col-sm-2 control-label">姓名</label>
 				<div class="col-sm-10">
 					<input class="form-control" name="speakerName" id="speakerName"
-						value="${speaker.speakerName }" type="text">
+						value="${result.data.speakerName }" type="text">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="subjectTitle" class="col-sm-2 control-label">职位</label>
 				<div class="col-sm-10">
 					<input class="form-control" name="speakerJob"  id="speakerJob"
-						value="${speaker.speakerJob }" type="text">
+						value="${result.data.speakerJob }" type="text">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="subjectTitle" class="col-sm-2 control-label">头像地址</label>
 				<div class="col-sm-10">
 					<input class="form-control" name="picUrl" id="picUrl"
-						value="${speaker.picUrl }" type="text">
+						value="${result.data.picUrl }" type="text">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="subjectTitle" class="col-sm-2 control-label">简介</label>
 				<div class="col-sm-10">
 					<input class="form-control" name="speakerDesc" id="speakerDesc"
-						value="${speaker.speakerDesc }" type="text">
+						value="${result.data.speakerDesc }" type="text">
 				</div>
 			</div>
 			<div class="form-group">

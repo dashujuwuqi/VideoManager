@@ -88,7 +88,7 @@ b {
 
 		<form id="infoForm" class="form-horizontal" action="/VideoSSM/courseUpdate.do">
 
-			<input name="id" value="${course.id }" type="hidden">
+			<input name="id" value="${result.data.id }" type="hidden">
 
 			<div class="form-group">
 				<label for="subjectId" class="col-sm-2 control-label">所属学科</label>
@@ -96,52 +96,52 @@ b {
 
 					<select name="subjectID" id="subjectId" class="form-control">
 						<option value="0" 
-						<c:if test="${course.subjectId eq '0'}">selected="selected"</c:if>						
+						<c:if test="${result.data.subjectId eq '0'}">selected="selected"</c:if>						
 						>请选择所属学科</option>
  
 						<option value="1"
-						<c:if test="${course.subjectId eq '1'}">selected="selected"</c:if>	
+						<c:if test="${result.data.subjectId eq '1'}">selected="selected"</c:if>	
 						>WEB前端</option>
 
 						<option value="2"
-						<c:if test="${course.subjectId eq '2'}">selected="selected"</c:if>	
+						<c:if test="${result.data.subjectId eq '2'}">selected="selected"</c:if>	
 						>Java</option>
 
 			           <option value="3" 
-			           <c:if test="${course.subjectId eq '3'}">selected="selected"</c:if>	
+			           <c:if test="${result.data.subjectId eq '3'}">selected="selected"</c:if>	
 			           >Android</option>
 
 						<option value="4"
-						<c:if test="${course.subjectId eq '4'}">selected="selected"</c:if>	
+						<c:if test="${result.data.subjectId eq '4'}">selected="selected"</c:if>	
 						
 						>IOS</option>
 
 						<option value="5"
-						<c:if test="${course.subjectId eq '5'}">selected="selected"</c:if>	
+						<c:if test="${result.data.subjectId eq '5'}">selected="selected"</c:if>	
 						>大数据</option>
 
 						<option value="6"
-						<c:if test="${course.subjectId eq '6'}">selected="selected"</c:if>	
+						<c:if test="${result.data.subjectId eq '6'}">selected="selected"</c:if>	
 						>UI</option>
 
 						<option value="7"
-                        <c:if test="${course.subjectId eq '7'}">selected="selected"</c:if>							
+                        <c:if test="${result.data.subjectId eq '7'}">selected="selected"</c:if>							
 						>VR</option>
 
 						<option value="8"
-						<c:if test="${course.subjectId eq '8'}">selected="selected"</c:if>	
+						<c:if test="${result.data.subjectId eq '8'}">selected="selected"</c:if>	
 						>U3D</option>
 
 						<option value="9"
-						<c:if test="${course.subjectId eq '9'}">selected="selected"</c:if>	
+						<c:if test="${result.data.subjectId eq '9'}">selected="selected"</c:if>	
 						>人工智能</option>
 
 						<option value="10"
-						<c:if test="${course.subjectId eq '10'}">selected="selected"</c:if>	
+						<c:if test="${result.data.subjectId eq '10'}">selected="selected"</c:if>	
 						>Python</option>
 
                  		<option value="11"
-                 		<c:if test="${course.subjectId eq '11'}">selected="selected"</c:if>	
+                 		<c:if test="${result.data.subjectId eq '11'}">selected="selected"</c:if>	
                  		>PHP</option>
 					
 					</select>
@@ -155,14 +155,14 @@ b {
 				<label for="subjectTitle" class="col-sm-2 control-label">标题</label>
 				<div class="col-sm-10">
 					<input class="form-control" name="courseTitle" id="subjectTitle"
-						value="${course.courseTitle} " placeholder="课程标题" type="text">
+						value="${result.data.courseTitle} " placeholder="课程标题" type="text">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="courseDesc" class="col-sm-2 control-label">简介</label>
 				<div class="col-sm-10">
 					<textarea class="form-control" id="courseDesc" name="courseDesc"
-						rows="3">${course.courseDesc}</textarea>
+						rows="3">${result.data.courseDesc}</textarea>
 				</div>
 			</div>
 			<div class="form-group">

@@ -90,7 +90,7 @@ th {
 				</thead>
 				<tbody>
 
-					<c:forEach items="${list}" var="i">
+					<c:forEach items="${result.data}" var="i">
 						<tr>
 							<td><input type="checkbox" name="select" value="${i.id}"></td>
 							<td>${i.id}</td>
@@ -111,7 +111,7 @@ th {
 								<c:set var="page" value="${count/5+1}">
 								</c:set>
 							</c:if> <c:forEach var="i" begin="1" end="${page}">
-								<a href="courseShow.do?page=${i}">第${i}页</a>
+								<a href="Back-Course-Show?page=${i}">第${i}页</a>
 							</c:forEach>
 					</tr>
 				</tbody>

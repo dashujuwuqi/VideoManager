@@ -91,7 +91,7 @@ b {
 
 					<select name="subjectId" id="subjectId" class="form-control">
 						<option value="0" selected="selected">请选择所属学科</option>
-                        <c:forEach items="${list}" var="i" >
+                        <c:forEach items="${result.data}" var="i" >
 				        <option value="${i.subjectId}">${i.subjectName}</option>
 				       </c:forEach>
 

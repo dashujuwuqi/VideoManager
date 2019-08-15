@@ -107,7 +107,7 @@ b {
 
 					<select name="speakerId" id="speakerId" class="form-control">
 						<option value="0" selected="selected">请选择讲师</option>
-						<c:forEach items="${speaker}" var="i">
+						<c:forEach items="${result1.data}" var="i">
 							<option value="${i.id}">${i.speakerName}</option>
 						</c:forEach>
 					</select>
@@ -120,7 +120,7 @@ b {
 
 					<select name="courseId" id="courseId" class="form-control">
 						<option value="0" selected="selected">请选择所选择所属课程</option>
-						<c:forEach items="${course}" var="j">
+						<c:forEach items="${result.data}" var="j">
 							<option value="${j.id}">${j.courseTitle}</option>
 						</c:forEach>
 					</select>
