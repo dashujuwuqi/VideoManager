@@ -42,9 +42,9 @@ display:inline-block;
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-9">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="/VideoSSM/videoShow.do">视频管理</a></li>
-					<li><a href="/VideoSSM/speakerShow.do">主讲人管理</a></li>
-					<li><a href="/VideoSSM/courseShow.do">课程管理</a></li>
+					<li class="active"><a href="/VideoSSM/Back-Video-Show">视频管理</a></li>
+					<li><a href="/VideoSSM/Back-Speaker-Show">主讲人管理</a></li>
+					<li><a href="/VideoSSM/Back-Course-Show">课程管理</a></li>
 				</ul>
 				<p class="navbar-text navbar-right">
 					<span>${admin.accounts}</span> <i
@@ -82,13 +82,13 @@ display:inline-block;
 		<input type="text" placeholder="标题" id="in" name="factor" class="" value="">
 			<select name="speakerId" id="speaker" class="btn btn-primary">
 				<option value="0">请选择老师</option>	
-			           <c:forEach items="${speaker}" var="i" >
+			           <c:forEach items="${result3.data}" var="i" >
 				        <option value="${i.id}">${i.speakerName}</option>
 				       </c:forEach>
 			</select>
 			<select name="courseId" id="course" class="btn btn-primary">
 				<option value="0">请选择课程</option>	
-			       <c:forEach items="${course}" var="j" >
+			       <c:forEach items="${result2.data}" var="j" >
 				        <option value="${j.id}">${j.courseTitle}</option>
 				    </c:forEach>
 			</select>
@@ -116,7 +116,7 @@ display:inline-block;
 				</thead>
 				<tbody>
 
-					<c:forEach items="${video}" var="k">
+					<c:forEach items="${result.data}" var="k">
 						<tr>
 							<td><input type="checkbox" name="select" value="${k.videoId}"></td>
 							<td>${k.videoId}</td>
@@ -147,7 +147,7 @@ display:inline-block;
 							</c:if>
 							<c:if test="${factor eq null}">
 							<c:forEach var="i" begin="1" end="${page}">
-								<a href="videoShow.do?page=${i}">第${i}页</a>
+								<a href="Back-Video-Show?page=${i}">第${i}页</a>
 							</c:forEach>	
 							</c:if>
 						

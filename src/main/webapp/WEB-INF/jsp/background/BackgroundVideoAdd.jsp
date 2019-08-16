@@ -53,9 +53,9 @@ b {
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-9">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="/VideoSSM/videoShow.do"> 视频管理</a></li>
-					<li><a href="/VideoSSM/speakerShow.do">主讲人管理</a></li>
-					<li><a href="/VideoSSM/courseShow.do">课程管理</a></li>
+					<li class="active"><a href="/VideoSSM/Back-Video-Show"> 视频管理</a></li>
+					<li><a href="/VideoSSM/Back-Speaker-Show">主讲人管理</a></li>
+					<li><a href="/VideoSSM/Back-Course-Show">课程管理</a></li>
 				</ul>
 				<p class="navbar-text navbar-right">
 					<span>${admin.accounts}</span> <i
@@ -107,7 +107,7 @@ b {
 
 					<select name="speakerId" id="speakerId" class="form-control">
 						<option value="0" selected="selected">请选择讲师</option>
-						<c:forEach items="${speaker}" var="i">
+						<c:forEach items="${result1.data}" var="i">
 							<option value="${i.id}">${i.speakerName}</option>
 						</c:forEach>
 					</select>
@@ -120,7 +120,7 @@ b {
 
 					<select name="courseId" id="courseId" class="form-control">
 						<option value="0" selected="selected">请选择所选择所属课程</option>
-						<c:forEach items="${course}" var="j">
+						<c:forEach items="${result.data}" var="j">
 							<option value="${j.id}">${j.courseTitle}</option>
 						</c:forEach>
 					</select>

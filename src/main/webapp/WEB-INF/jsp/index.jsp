@@ -266,8 +266,7 @@
 				<form id="loginForm" action="">
 					<h3>快速登录</h3>
 					<input id="loginEmail" placeholder="请输入邮箱" name="email"
-						type="email"><span
-						id="emailMsg1"></span> <input id="loginPassword"
+						type="email"> <input id="loginPassword"
 						placeholder="请输入密码" name="password" type="password">
 					<div id="forget">
 						<a

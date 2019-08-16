@@ -20,6 +20,10 @@ public class Video implements Serializable{
     private String imageUrl;
 
     private Integer playNum;
+    
+    private Speaker speaker;
+    
+    private Course course;
 
     public Integer getVideoId() {
         return videoId;
@@ -92,4 +96,29 @@ public class Video implements Serializable{
     public void setPlayNum(Integer playNum) {
         this.playNum = playNum;
     }
+
+	public Speaker getSpeaker() {
+		return speaker;
+	}
+
+	public void setSpeaker(Speaker speaker) {
+		this.speaker = speaker;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
+	@Override
+	public String toString() {
+		return "Video [videoId=" + videoId + ", title=" + title + ", detail=" + detail + ", time=" + time
+				+ ", speakerId=" + speakerId + ", courseId=" + courseId + ", videoUrl=" + videoUrl + ", imageUrl="
+				+ imageUrl + ", playNum=" + playNum + ", speaker=" + speaker + ", course=" + course + "]";
+	}
+	
+    
 }

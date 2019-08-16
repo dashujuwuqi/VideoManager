@@ -53,9 +53,9 @@ b {
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-9">
 				<ul class="nav navbar-nav">
-					<li><a href="/VideoSSM/videoShow.do">视频管理</a></li>
-					<li class="active"><a href="/VideoSSM/speakerShow.do">主讲人管理</a></li>
-					<li><a href="/VideoSSM/speakerShow.do">课程管理
+					<li><a href="/VideoSSM/Back-Video-Show">视频管理</a></li>
+					<li class="active"><a href="/VideoSSM/Back-Speaker-Show">主讲人管理</a></li>
+					<li><a href="/VideoSSM/Back-Course-Show">课程管理
 						</a></li>
 				</ul>
 				<p class="navbar-text navbar-right">
@@ -88,7 +88,7 @@ b {
 
 		<form id="infoForm" class="form-horizontal" action="/VideoSSM/speakerUpdate.do">
 
-			<input name="id" value="${speaker.id }" type="hidden">
+			<input name="id" value="${result.data.id }" type="hidden">
 
 			
 
@@ -96,28 +96,28 @@ b {
 				<label for="subjectTitle" class="col-sm-2 control-label">姓名</label>
 				<div class="col-sm-10">
 					<input class="form-control" name="speakerName" id="speakerName"
-						value="${speaker.speakerName }" type="text">
+						value="${result.data.speakerName }" type="text">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="subjectTitle" class="col-sm-2 control-label">职位</label>
 				<div class="col-sm-10">
 					<input class="form-control" name="speakerJob"  id="speakerJob"
-						value="${speaker.speakerJob }" type="text">
+						value="${result.data.speakerJob }" type="text">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="subjectTitle" class="col-sm-2 control-label">头像地址</label>
 				<div class="col-sm-10">
 					<input class="form-control" name="picUrl" id="picUrl"
-						value="${speaker.picUrl }" type="text">
+						value="${result.data.picUrl }" type="text">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="subjectTitle" class="col-sm-2 control-label">简介</label>
 				<div class="col-sm-10">
 					<input class="form-control" name="speakerDesc" id="speakerDesc"
-						value="${speaker.speakerDesc }" type="text">
+						value="${result.data.speakerDesc }" type="text">
 				</div>
 			</div>
 			<div class="form-group">

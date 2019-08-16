@@ -36,9 +36,9 @@ th {
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-9">
 				<ul class="nav navbar-nav">
-					<li><a href="/VideoSSM/videoShow.do">视频管理</a></li>
-					<li><a href="/VideoSSM/speakerShow.do">主讲人管理</a></li>
-					<li class="active"><a href="/VideoSSM/courseShow.do">课程管理</a></li>
+					<li><a href="/VideoSSM/Back-Video-Show">视频管理</a></li>
+					<li><a href="/VideoSSM/Back-Speaker-Show">主讲人管理</a></li>
+					<li class="active"><a href="/VideoSSM/Back-Course-Show">课程管理</a></li>
 				</ul>
 				<p class="navbar-text navbar-right">
 					<span>${admin.accounts}</span> <i
@@ -90,7 +90,7 @@ th {
 				</thead>
 				<tbody>
 
-					<c:forEach items="${list}" var="i">
+					<c:forEach items="${result.data}" var="i">
 						<tr>
 							<td><input type="checkbox" name="select" value="${i.id}"></td>
 							<td>${i.id}</td>
@@ -111,7 +111,7 @@ th {
 								<c:set var="page" value="${count/5+1}">
 								</c:set>
 							</c:if> <c:forEach var="i" begin="1" end="${page}">
-								<a href="courseShow.do?page=${i}">第${i}页</a>
+								<a href="Back-Course-Show?page=${i}">第${i}页</a>
 							</c:forEach>
 					</tr>
 				</tbody>

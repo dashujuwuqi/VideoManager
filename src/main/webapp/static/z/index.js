@@ -153,7 +153,6 @@ $("#FindEmail").blur(function(){
 
 });
 
-
 $("#regEmail").blur(function(){
 
 
@@ -267,9 +266,6 @@ function commitRegForm(){
 		return false;
 
 	}else{
-		alert(regIsCommitEmail);
-		alert(regIsCommitPsw);
-		alert(verifyCode.validate(code));
 		alert("输入有误");
 		return false;
 	}
@@ -300,10 +296,7 @@ function commitLogin(){
 //				$("#userBlock").css("display","none");
 //				$("#userAccount").css("display","block");
 				
-			}else{
-				alert("密码错误");
-			}
-			}
+			}}
 		});
 
 		return false;

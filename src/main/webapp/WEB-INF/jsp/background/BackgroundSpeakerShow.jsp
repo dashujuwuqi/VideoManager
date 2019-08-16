@@ -36,9 +36,9 @@ th {
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-9">
 				<ul class="nav navbar-nav">
-					<li><a href="/VideoSSM/videoShow.do">视频管理</a></li>
-					<li class="active"> <a href="/VideoSSM/speakerShow.do">主讲人管理</a></li>
-					<li ><a href="/VideoSSM/courseShow.do">课程管理</a></li>
+					<li><a href="/VideoSSM/Back-Video-Show">视频管理</a></li>
+					<li class="active"> <a href="/VideoSSM/Back-Speaker-Show">主讲人管理</a></li>
+					<li ><a href="/VideoSSM/Back-Course-Show">课程管理</a></li>
 				</ul>
 				<p class="navbar-text navbar-right">
 					<span>${admin.accounts}</span> <i class="glyphicon glyphicon-log-in"
@@ -90,7 +90,7 @@ th {
 				</thead>
 				<tbody>
 
-					<c:forEach items="${list}" var="i">
+					<c:forEach items="${result.data}" var="i">
 						<tr>
 							<td><input type="checkbox" name="select" value="${i.id}"></td>
 							<td>${i.id}</td>
@@ -102,7 +102,18 @@ th {
 								onclick="delSpeakerById('#deletedID','${i.id}','${i.speakerName}')">X</a></td>
 						</tr>
 					</c:forEach>
-					
+					<tr>
+						<td colspan="2"><font>总共${count}条,当前第${page}页</font> <c:if
+								test="${count%5==0}">
+								<c:set var="page" value="${count/5}">
+								</c:set>
+							</c:if> <c:if test="${count%5!=0}">
+								<c:set var="page" value="${count/5+1}">
+								</c:set>
+							</c:if> <c:forEach var="i" begin="1" end="${page}">
+								<a href="Back-Speaker-Show?page=${i}">第${i}页</a>
+							</c:forEach>
+					</tr>
 				</tbody>
 			</table>
 
@@ -130,7 +141,7 @@ th {
 			$("#ids").val(ids);
 		}
 		function showAddPage() {
-			location.href = "/VideoSSM/background/BackgroundSpeakerAdd.jsp";
+			location.href = "/VideoSSM/BackgroundSpeakerAddShow.do";
 		}
 		
 		function delSpeakerById(Obj, id, title) {
@@ -144,6 +155,7 @@ th {
 						};
 						$.post("/VideoSSM/speakerDelete.do", param, function(
 								data) {
+							alert(data);
 							if (data == 'success') {
 								Confirm.show('温馨提示：', '删除成功');
 								window.location.reload();

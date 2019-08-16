@@ -11,6 +11,19 @@
     <result column="video_url" jdbcType="VARCHAR" property="videoUrl" />
     <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
     <result column="play_num" jdbcType="INTEGER" property="playNum" />
+   		<association column="speaker_id" property="speaker" javaType="com.zhiyou.model.Speaker">
+			<id column="id" property="id" />
+			<result column="speaker_name" property="speakerName" />
+			<result column="speaker_desc" property="speakerDesc" />
+			<result column="speaker_job" property="speakerJob" />
+			<result column="pic_url" property="picUrl" />
+		</association>
+		<association column="course_id" property="course" javaType="com.zhiyou.model.Course">
+			<id column="id" property="id" />
+			<result column="course_title" property="courseTitle" />
+			<result column="course_desc" property="courseDesc" />
+			<result column="subject_id" property="subjectId" />
+		</association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -87,11 +100,25 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="select" resultMap="BaseResultMap">
+  	select * from video v ,speaker s where v.speaker_id=s.id 
+  
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from video
     where video_id = #{videoId,jdbcType=INTEGER}
+  </select>
+  <select id="selectLike" resultMap="BaseResultMap">
+  	select * from video v,speaker s
+	<trim prefixOverrides="and" prefix="where"> 
+	<if test="factor!=null and factor!=''"> ${subject} like "%"
+				#{factor} "%" </if>
+			<if test="speakerId!=null and speakerId!=0">and v.speaker_id = #{speakerId}</if>
+			<if test="courseId!=null and courseId!=0">and course_id = #{courseId}</if>
+			and v.speaker_id=s.id 
+		</trim>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from video
