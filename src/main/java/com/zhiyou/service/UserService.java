@@ -9,4 +9,6 @@ public interface UserService {
 	List<User> selectByExample(UserExample example);
 	
 	int insertSelective(User record);
+	
+	int updateByExampleSelective(User record,UserExample example);
 }

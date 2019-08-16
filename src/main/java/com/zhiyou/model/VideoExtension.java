@@ -1,6 +1,8 @@
 package com.zhiyou.model;
 
-public class VideoExtension extends Video{
+import java.io.Serializable;
+
+public class VideoExtension extends Video implements Serializable{
 	private Speaker speaker;
 	private CourseExtension course;
 	public Speaker getSpeaker() {
