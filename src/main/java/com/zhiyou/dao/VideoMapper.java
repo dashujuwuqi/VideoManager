@@ -30,4 +30,6 @@ public interface VideoMapper {
     int updateByPrimaryKey(Video record);
     
     List<Video> select();
+    
+    List<Video> selectLike(@Param("speakerId")String speakerId, @Param("courseId")String courseId,@Param("subject")String subject, @Param("factor")String factor); 
 }

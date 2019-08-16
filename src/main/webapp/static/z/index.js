@@ -105,29 +105,6 @@ function GetUrlParam(paraName) {
 
 //==========================Java02班升级JS===============================
 
-$("#loginEmail").blur(function(){
-
-
-	//不为空再校验
-	var emailVal=$("#loginEmail").val();
-	//alert(emailVal);
-	// js 判断不相等  不能使用   !""==xxxx
-	if(null != emailVal && ""!=emailVal){
-		var params={"email":emailVal};
-		// alert(params);
-		$.post("/VideoSSM/validateLoginEmail.do",params,function(data){
-			if(data=="success"){
-				regIsCommitEmail=true;
-				$("#emailMsg1").text("该邮箱可用").css("color","green");
-			}else{
-				regIsCommitEmail=false;
-				$("#emailMsg1").text("该邮箱错误，请重新输入").css("color","red");
-			}
-		});
-	}
-
-});
-
 $("#regEmail").blur(function(){
 
 
@@ -217,9 +194,6 @@ function commitRegForm(){
 		return false;
 
 	}else{
-		alert(regIsCommitEmail);
-		alert(regIsCommitPsw);
-		alert(verifyCode.validate(code));
 		alert("输入有误");
 		return false;
 	}
@@ -250,10 +224,7 @@ function commitLogin(){
 //				$("#userBlock").css("display","none");
 //				$("#userAccount").css("display","block");
 				
-			}else{
-				alert("密码错误");
-			}
-			}
+			}}
 		});
 
 		return false;

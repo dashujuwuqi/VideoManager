@@ -87,6 +87,12 @@ public class BackVideoServiceImpl implements BackVideoService{
 		return vm.select();
 	}
 
+	@Override
+	public List<Video> selectLike(String speakerId, String courseId, String subject, String factor) {
+		// TODO Auto-generated method stub
+		return vm.selectLike(speakerId, courseId, subject, factor);
+	}
+
 
 
 }
