@@ -98,7 +98,7 @@
 							</td>
 							<td rowspan="2" class="one_three"><a class="opacity5"
 								href="/VideoSSM/courseWithVideoAndSubject.do?subjectId=2"> <img
-									src="/Video/static/z/java.jpg" alt="" class="image "
+									src="/VideoSSM/static/z/java.jpg" alt="" class="image "
 									draggable="false">
 									<div class="headline">
 										<span>Java教程</span> <img src="/VideoSSM/static/z/arrow.png"
@@ -227,6 +227,35 @@
 	</footer>
 
 
+	<!--找回密码-->
+	<div class="mask hidden" id="findPassword">
+		<div class="mask_content">
+			<div class="mask_content_header">
+				<img src="/VideoSSM/static/z/logo.png" alt="" class="ma">
+			</div>
+			<div class="mask_content_body">
+				<form id="findForm" action="/VideoSSM/findPassword.do">
+					<h3>找回密码</h3>
+					<input id="FindEmail" placeholder="请输入邮箱" name="email2" type="email">
+					<span id="emailMsg2"></span>
+					
+					<input  type="text" placeholder="请输入邮箱内的验证码" id="codeNew"> 
+					<input type="hidden" id="CodeNowNew">
+					<div id="codeMsgNew"></div>
+					<button type="button" id="codeBtn1" >发送验证码</button>
+					
+					<input id="NewloginPassword" placeholder="请输入新的密码" name="password2" type="password">
+					
+					<input id="findSubBtn" value="提交" type="submit">
+				</form>
+			</div>
+			<div class="mask_content_footer">
+				<span id="find_close">关 闭</span>
+			</div>
+		</div>
+	</div>
+	<!-- ************************************************************************************* -->
+
 	<!--用户登录-->
 	<div class="mask hidden" id="login">
 		<div class="mask_content">
@@ -241,7 +270,7 @@
 						placeholder="请输入密码" name="password" type="password">
 					<div id="forget">
 						<a
-							href="">忘记密码？</a>
+							href="javascript:void(0)"  id="forgetPass">忘记密码？</a>
 					</div>
 					<input onclick="return commitLogin()" value="登　录" type="submit">
 				</form>
@@ -264,11 +293,11 @@
 					<input id="loginAccounts" placeholder="请输入管理员账户" name="accounts"
 						type="text"
 						style="width: 100%; margin: 15px 0; padding: 0 10px 0 50px; border: 1px solid #bac0ce; background-image: url(/VideoSSM/static/z/user.png); background-repeat: no-repeat; background-position: 8px center;">
-
+                    <span id="adminMsg"></span>
 					<input id="loginAccountsPassword" placeholder="请输入密码"
 						name="accountsPassword" type="password">
 					<div id="msg">&nbsp;</div>
-					<input id="adminSubBtn" value="登　录" type="submit">
+					<input id="adminSubBtn" onclick="return adminLogin()" value="登　录" type="submit">
 				</form>
 			</div>
 			<div class="mask_content_footer">
@@ -292,11 +321,16 @@
 				<form id="regForm"
 					action="">
 					<h3>新用户注册</h3>
-					<input id="regEmail" placeholder="请输入邮箱" name="email" type="email"><span
-						id="emailMsg"></span> <input id="regPsw" placeholder="请输入密码"
-						name="password" type="password"> <input id="regPswAgain"
-						placeholder="请再次输入密码" name="psw_again" type="password"><span
-						id="passMsg"></span>
+					<input id="regEmail" placeholder="请输入邮箱" name="email" type="email">
+					<span id="emailMsg"></span>
+					<input id="regPsw" placeholder="请输入密码" name="password" type="password"> 
+					<input id="regPswAgain" placeholder="请再次输入密码" name="psw_again" type="password">
+					<span id="passMsg"></span>
+					  <input  type="text" placeholder="请输入邮箱内的验证码"
+								id="code"> <input type="hidden" id="CodeNow">
+							<div id="codeMsg"></div>
+					  <button type="button" id="codeBtn" >发送验证码</button>
+					
 					<div id="yzm" class="form-inline">
 						<input name="yzm" style="width: 45%; display: inline-block;"
 							type="text">
@@ -308,7 +342,7 @@
 								style="cursor: pointer;">您的浏览器版本不支持canvas</canvas>
 						</div>
 					</div>
-					<input onclick="return commitRegForm();" value="注　册" type="submit">
+					<input id="userReg" onclick="return commitRegForm();" value="注　册" type="submit">
 				</form>
 			</div>
 			<div class="mask_content_footer">
@@ -355,33 +389,18 @@
 				$("#adminLogin").toggle();
 			});
 		});
-
-		$(function() {
-			$("#adminSubBtn").attr('disabled', true);
-			$("input[name='accounts']").blur(accountsCheck);
-			$("#loginAccountsPassword").blur(accountsCheck);
-			$("#adminSubBtn").click(accountsCheck);
-		});
-		function accountsCheck() {
-
-			$.ajax({
-				url : "${pageContext.request.contextPath}/accountsCheck.do",
-				type : "post",
-				data : {
-					accounts : $("input[name='accounts']").val()
-				},
-				dataType : "json",
-				success : function(msg) {
-					if (msg.isSuccess) {
-						$("#adminSubBtn").attr('disabled', false);
-						$("#msg").html("<font color='green'>账号正确!</font>");
-					} else {
-						$("#msg").html("<font color='red'>账号错误!</font>");
-
-					}
-				}
+		$(document).ready(function() {
+			$("#find_close").click(function() {
+				$("#findPassword").toggle();
 			});
-		}
+		});
+		
+		$(document).ready(function() {
+			$("#forgetPass").click(function() {
+				$("#login").toggle();
+				$("#findPassword").toggle();
+			});
+		});
 		
 
 		

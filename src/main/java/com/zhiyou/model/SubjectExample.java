@@ -1,9 +1,10 @@
 package com.zhiyou.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SubjectExample {
+public class SubjectExample implements Serializable{
     protected String orderByClause;
 
     protected boolean distinct;

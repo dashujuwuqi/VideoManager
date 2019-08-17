@@ -1,9 +1,10 @@
 package com.zhiyou.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseExtension extends Course{
+public class CourseExtension extends Course implements Serializable{
 	private List<Video> videos = new ArrayList<Video>();
 	private Subject subject;
 	public List<Video> getVideos() {

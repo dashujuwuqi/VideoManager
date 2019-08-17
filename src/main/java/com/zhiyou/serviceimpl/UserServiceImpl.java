@@ -17,10 +17,13 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userMapper.selectByExample(example);
 	}
-	@Override
 	public int insertSelective(User record) {
 		// TODO Auto-generated method stub
 		return userMapper.insertSelective(record);
+	}
+	public int updateByExampleSelective(User record, UserExample example) {
+		// TODO Auto-generated method stub
+		return userMapper.updateByExampleSelective(record, example);
 	}
 
 }

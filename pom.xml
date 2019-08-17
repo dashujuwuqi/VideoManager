@@ -73,6 +73,11 @@
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
 		</dependency>
+		<!--  -->
+		<dependency>        
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
 		
 		<!--pagehelper -->
 		<dependency>
@@ -80,7 +85,12 @@
 			<artifactId>pagehelper</artifactId>
 			<version>4.1.1</version>
 		</dependency>
-		
+		<!-- 邮箱接口 -->
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-email</artifactId>
+    <version>1.5</version>
+</dependency>
 		<!-- 上传下载文件 -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -98,8 +108,23 @@
 		<dependency>
 			<groupId>com.sun.mail</groupId>
 			<artifactId>javax.mail</artifactId>
-			</dependency>
+		</dependency>
+		
+		<!-- redis -->
+	    <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        
+        <!-- jedis -->
+		<dependency>
+		    <groupId>redis.clients</groupId>
+		    <artifactId>jedis</artifactId>
+		</dependency>
+        
 	</dependencies>
+	
+
 
 	<build>
 		<plugins>

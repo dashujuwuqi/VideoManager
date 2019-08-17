@@ -105,6 +105,54 @@ function GetUrlParam(paraName) {
 
 //==========================Java02班升级JS===============================
 
+$("#loginEmail").blur(function(){
+
+
+	//不为空再校验
+	var emailVal=$("#loginEmail").val();
+	//alert(emailVal);
+	// js 判断不相等  不能使用   !""==xxxx
+	if(null != emailVal && ""!=emailVal){
+		var params={"email":emailVal};
+		// alert(params);
+		$.post("/VideoSSM/validateLoginEmail.do",params,function(data){
+			if(data=="success"){
+				regIsCommitEmail=true;
+				$("#emailMsg1").text("该邮箱可用").css("color","green");
+			}else{
+				regIsCommitEmail=false;
+				$("#emailMsg1").text("该邮箱错误，请重新输入").css("color","red");
+			}
+		});
+	}
+
+});
+
+$("#FindEmail").blur(function(){
+
+
+	//不为空再校验
+	var emailVal=$("#FindEmail").val();
+	//alert(emailVal);
+	// js 判断不相等  不能使用   !""==xxxx
+	if(null != emailVal && ""!=emailVal){
+		var params={"email":emailVal};
+		// alert(params);
+		$.post("/VideoSSM/validateLoginEmail.do",params,function(data){
+			if(data=="success"){
+				regIsCommitEmail=true;
+				$("#emailMsg2").text("该邮箱可用").css("color","green");
+				$("#findSubBtn").attr('disabled', false);
+			}else{
+				regIsCommitEmail=false;
+				$("#emailMsg2").text("该邮箱错误，请重新输入").css("color","red");
+				$("#findSubBtn").attr('disabled', true);
+			}
+		});
+	}
+
+});
+
 $("#regEmail").blur(function(){
 
 
@@ -122,6 +170,29 @@ $("#regEmail").blur(function(){
 			}else{
 				regIsCommitEmail=false;
 				$("#emailMsg").text("该邮箱已注册，请直接登录").css("color","red");
+			}
+		});
+	}
+
+});
+
+$("#loginAccounts").blur(function(){
+
+
+	//不为空再校验
+	var emailVal=$("#loginAccounts").val();
+	//alert(emailVal);
+	// js 判断不相等  不能使用   !""==xxxx
+	if(null != emailVal && ""!=emailVal){
+		var params={"email":emailVal};
+		// alert(params);
+		$.post("/VideoSSM/validateAdminEmail.do",params,function(data){
+			if(data=="success"){
+				$("#adminMsg").text("账号正确").css("color","green");
+				$("#adminSubBtn").attr('disabled',false);
+			}else{
+				$("#adminMsg").text("账号错误").css("color","red");
+				$("#adminSubBtn").attr('disabled',true);
 			}
 		});
 	}
@@ -157,6 +228,7 @@ $("#regPswAgain").blur(function(){
 
 var regIsCommitEmail=false;
 var regIsCommitPsw=false;
+var emailRegYzm=false;
 var verifyCode;
 function commitRegForm(){
 
@@ -233,6 +305,40 @@ function commitLogin(){
 	return false;
 }
 
+function adminLogin(){
+	
+	var email =$("#loginAccounts").val();
+	var password =$("#loginAccountsPassword").val();
+	if(null!=email && email!="" && null!=password && password!=""){
+		 //alert(params);
+		// post要小写
+		$.post({
+			url:"/VideoSSM/adminLogin.do",
+			data:{"loginForm":$("#AdminLoginForm").serialize()},
+//			xhrFields: {
+//				withCredentials: true
+//				},
+			success:function(data){
+			
+			if(data=='success'){
+				window.location.href="/VideoSSM/AdminShow.do"
+				//window.location.reload();
+//				$("#login").toggle();
+//				$("#userBlock").css("display","none");
+//				$("#userAccount").css("display","block");
+				
+			}else{
+				alert("密码错误");
+			}
+			}
+		});
+
+		return false;
+	}
+
+	return false;
+}
+
 
 function addFavorite2() {
 	
@@ -254,4 +360,113 @@ function addFavorite2() {
 	} else {
 		alert('您的浏览器不支持,请按 Ctrl+D 手动收藏!');
 	}
+}
+
+$(function(){
+	$("#formsub").attr('disabled',true)
+	$("#codeBtn").click(function(){
+		mailsend1();
+		time1();
+	});
+	
+});
+function mailsend1(){
+	$.ajax({
+		url:"/VideoSSM/MailCheck.do",
+		type:"post",
+		data:{
+			mail:$("#regEmail").val()
+		},
+		success:function(msg){
+			$("#CodeNow").val(msg);
+		}
+	});
+}
+$(function(){
+	$("#code").blur(mailcheckReg);
+});
+function mailcheckReg(){
+	var CodeNow = $("#CodeNow").val();
+	var Code=$("#code").val();
+	if(CodeNow == Code && Code != null && Code !=""){
+		$("#codeMsg").html("<font color='green'>验证成功!</font>");
+		$("#userReg").attr('disabled',false);
+	}else{
+		$("#codeMsg").html("<font color='red'>验证失败!</font>");
+		$("#userReg").attr('disabled',true);
+	}
+}
+var count1 = 60;
+function time1(){
+	if(count1==0){
+		$("#CodeNow").val("");
+		$("#codeBtn").attr('disabled',false);
+		$("#codeBtn").text("发送验证码");
+		 count1 = 60;
+		return;
+	}else{
+		
+		$("#codeBtn").attr('disabled',true);
+		$("#codeBtn").text("重新发送"+count1+"s");
+		count1--;
+	}
+setTimeout(function () {
+	time1()
+},1000)	
+		
+}
+
+$(function(){
+	$("#formsub").attr('disabled',true)
+	$("#codeBtn1").click(function(){
+		mailsend();
+		time();
+	});
+	
+});
+function mailsend(){
+	$.ajax({
+		url:"/VideoSSM/MailCheck.do",
+		type:"post",
+		data:{
+			mail:$("#FindEmail").val()
+		},
+		success:function(msg){
+			$("#CodeNowNew").val(msg);
+		}
+	});
+}
+$(function(){
+	$("#codeNew").blur(mailcheck);
+});
+function mailcheck(){
+	var CodeNowNew = $("#CodeNowNew").val();
+//	alert(CodeNowNew)
+	var CodeNew=$("#codeNew").val();
+	if(CodeNowNew == CodeNew && CodeNew != null && CodeNew !=""){
+		$("#codeMsgNew").html("<font color='green'>验证成功!</font>");
+		$("#findSubBtn").attr('disabled',false);
+	}else{
+		$("#codeMsgNew").html("<font color='red'>验证失败!</font>");
+		$("#findSubBtn").attr('disabled', true);
+	}
+}
+var count = 60;
+function time(){
+	if(count==0){
+		$("#CodeNowNew").val("");
+		$("#codeBtn1").attr('disabled',false);
+		$("#codeBtn1").text("发送验证码");
+		 count = 60;
+		return;
+	}else{
+		
+		$("#codeBtn1").attr('disabled',true);
+		$("#codeBtn1").text("重新发送"+count+"s");
+		count--;
+	}
+setTimeout(function () {
+	time()
+},1000)	
+		
 }

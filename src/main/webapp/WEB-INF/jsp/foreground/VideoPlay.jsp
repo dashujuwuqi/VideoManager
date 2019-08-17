@@ -194,6 +194,36 @@
 		<div class="record">智游教育 © 豫ICP备17000832号-1 河南智游臻龙教育科技有限公司</div>
 	</footer>
 
+	<!--找回密码-->
+	<div class="mask hidden" id="findPassword">
+		<div class="mask_content">
+			<div class="mask_content_header">
+				<img src="/VideoSSM/static/z/logo.png" alt="" class="ma">
+			</div>
+			<div class="mask_content_body">
+				<form id="findForm" action="/VideoSSM/findPassword.do">
+					<h3>找回密码</h3>
+					<input id="FindEmail" placeholder="请输入邮箱" name="email2" type="email">
+					<span id="emailMsg2"></span>
+					
+					<input  type="text" placeholder="请输入邮箱内的验证码" id="codeNew"> 
+					<input type="hidden" id="CodeNowNew">
+					<div id="codeMsgNew"></div>
+					<button type="button" id="codeBtn1" >发送验证码</button>
+					
+					<input id="NewloginPassword" placeholder="请输入新的密码" name="password2" type="password">
+					
+					<input id="findSubBtn" value="提交" type="submit">
+				</form>
+			</div>
+			<div class="mask_content_footer">
+				<span id="find_close">关 闭</span>
+			</div>
+		</div>
+	</div>
+	<!-- ************************************************************************************* -->
+
+	<!-- ************************************************************************************* -->
 
 	<!--用户登录-->
 	<div class="mask hidden" id="login">
@@ -205,11 +235,12 @@
 				<form id="loginForm" action="">
 					<h3>快速登录</h3>
 					<input id="loginEmail" placeholder="请输入邮箱" name="email"
-						type="email"> <input id="loginPassword"
+						type="email"><span
+						id="emailMsg1"></span> <input id="loginPassword"
 						placeholder="请输入密码" name="password" type="password">
 					<div id="forget">
 						<a
-							href="http://localhost:8080/video/front/user/forgetPassword.action">忘记密码？</a>
+							href="javascript:void(0)"  id="forgetPass">忘记密码？</a>
 					</div>
 					<input onclick="return commitLogin()" value="登　录" type="submit">
 				</form>
@@ -259,13 +290,18 @@
 			</div>
 			<div class="mask_content_body">
 				<form id="regForm"
-					action="http://localhost:8080/Voids/user/insertUser.action">
+					action="">
 					<h3>新用户注册</h3>
-					<input id="regEmail" placeholder="请输入邮箱" name="email" type="email"><span
-						id="emailMsg"></span> <input id="regPsw" placeholder="请输入密码"
-						name="password" type="password"> <input id="regPswAgain"
-						placeholder="请再次输入密码" name="psw_again" type="password"><span
-						id="passMsg"></span>
+					<input id="regEmail" placeholder="请输入邮箱" name="email" type="email">
+					<span id="emailMsg"></span>
+					<input id="regPsw" placeholder="请输入密码" name="password" type="password"> 
+					<input id="regPswAgain" placeholder="请再次输入密码" name="psw_again" type="password">
+					<span id="passMsg"></span>
+					  <input  type="text" placeholder="请输入邮箱内的验证码"
+								id="code"> <input type="hidden" id="CodeNow">
+							<div id="codeMsg"></div>
+					  <button type="button" id="codeBtn" >发送验证码</button>
+					
 					<div id="yzm" class="form-inline">
 						<input name="yzm" style="width: 45%; display: inline-block;"
 							type="text">
@@ -277,7 +313,7 @@
 								style="cursor: pointer;">您的浏览器版本不支持canvas</canvas>
 						</div>
 					</div>
-					<input onclick="return commitRegForm();" value="注　册" type="submit">
+					<input id="userReg" onclick="return commitRegForm();" value="注　册" type="submit">
 				</form>
 			</div>
 			<div class="mask_content_footer">
@@ -325,30 +361,18 @@
 			});
 		});
 
-		$(function() {
-			$("#adminSubBtn").attr('disabled', true);
-			$("input[name='accounts']").blur(accountsCheck);
-		});
-		function accountsCheck() {
-
-			$.ajax({
-				url : "${pageContext.request.contextPath}/accountsCheck.do",
-				type : "post",
-				data : {
-					accounts : $("input[name='accounts']").val()
-				},
-				dataType : "json",
-				success : function(msg) {
-					if (msg.isSuccess) {
-						$("#adminSubBtn").attr('disabled', false);
-						$("#msg").html("<font color='green'>账号正确!</font>");
-					} else {
-						$("#msg").html("<font color='red'>账号错误!</font>");
-
-					}
-				}
+		$(document).ready(function() {
+			$("#find_close").click(function() {
+				$("#findPassword").toggle();
 			});
-		}
+		});
+		
+		$(document).ready(function() {
+			$("#forgetPass").click(function() {
+				$("#login").toggle();
+				$("#findPassword").toggle();
+			});
+		});
 	</script>
 
 
