@@ -110,6 +110,7 @@
     from video
     where video_id = #{videoId,jdbcType=INTEGER}
   </select>
+  
   <select id="selectLike" resultMap="BaseResultMap">
   	select * from video v,speaker s
 	<trim prefixOverrides="and" prefix="where"> 
@@ -120,6 +121,7 @@
 			and v.speaker_id=s.id 
 		</trim>
   </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from video
     where video_id = #{videoId,jdbcType=INTEGER}

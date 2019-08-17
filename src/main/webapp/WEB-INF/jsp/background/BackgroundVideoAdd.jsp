@@ -56,6 +56,7 @@ b {
 					<li class="active"><a href="/VideoSSM/Back-Video-Show"> 视频管理</a></li>
 					<li><a href="/VideoSSM/Back-Speaker-Show">主讲人管理</a></li>
 					<li><a href="/VideoSSM/Back-Course-Show">课程管理</a></li>
+					<li><a href="/VideoSSM/Back-Admin-Show">管理员管理</a></li>
 				</ul>
 				<p class="navbar-text navbar-right">
 					<span>${admin.accounts}</span> <i

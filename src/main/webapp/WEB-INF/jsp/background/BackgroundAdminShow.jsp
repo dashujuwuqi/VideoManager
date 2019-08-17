@@ -10,7 +10,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>智游教育</title>
 
-<link href="/VideoSSM/static/z/bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="/VideoSSM/static/z/bootstrap/css/bootstrap.css"
+	rel="stylesheet">
 
 <script src="/VideoSSM/static/js/jquery-1.js"></script>
 <script src="/VideoSSM/static/js/bootstrap.js"></script>
@@ -21,6 +22,11 @@
 <style type="text/css">
 th {
 	text-align: center;
+}
+.d{
+
+padding-left: 400px;
+display:inline-block;
 }
 </style>
 </head>
@@ -36,10 +42,10 @@ th {
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-9">
 				<ul class="nav navbar-nav">
-					<li><a href="/VideoSSM/Back-Video-Show">视频管理</a></li>
+					<li ><a href="/VideoSSM/Back-Video-Show">视频管理</a></li>
 					<li><a href="/VideoSSM/Back-Speaker-Show">主讲人管理</a></li>
-					<li class="active"><a href="/VideoSSM/Back-Course-Show">课程管理</a></li>
-					<li><a href="/VideoSSM/Back-Admin-Show">管理员管理</a></li>
+					<li><a href="/VideoSSM/Back-Course-Show">课程管理</a></li>
+					<li class="active"><a href="/VideoSSM/Back-Admin-Show">管理员管理</a></li>
 				</ul>
 				<p class="navbar-text navbar-right">
 					<span>${admin.accounts}</span> <i
@@ -61,18 +67,18 @@ th {
 
 	<div class="jumbotron" style="padding-top: 15px; padding-bottom: 15px;">
 		<div class="container">
-			<h2>课程管理</h2>
+			<h2>视频管理</h2>
 		</div>
 	</div>
 
-	<form action="/VideoSSM/courseDeleteAll.do">
+	<form action="/VideoSSM/courseDeleteAll.do" id="videoForm">
 		<div class="container">
 			<button onclick="showAddPage()" type="button"
 				class="btn btn-info dropdown-toggle" data-toggle="dropdown"
 				aria-haspopup="true" aria-expanded="false">添加</button>
 			<input id="ids" name="ids" type="hidden">
 			<button onclick="deleteAll()" type="submit" id="btn"
-				class="btn btn-info dropdown-toggle">批量删除</button>
+				class="btn btn-primary">批量删除</button>
 		</div>
 
 		<div class="container" style="margin-top: 20px;">
@@ -83,26 +89,24 @@ th {
 					<tr class="active">
 						<th><input type="checkbox" id="all"></th>
 						<th>序号</th>
-						<th style="width: 16%">标题</th>
-						<th style="width: 60%">简介</th>
+						<th style="width: 16%">账号</th>
+						<th style="width: 36%">介绍</th>
 						<th>编辑</th>
 						<th>删除</th>
 					</tr>
 				</thead>
 				<tbody>
 
-					<c:forEach items="${result.data}" var="i">
+					<c:forEach items="${result.data}" var="k">
 						<tr>
-							<td><input type="checkbox" name="select" value="${i.id}"></td>
-							<td>${i.id}</td>
-							<td>${i.courseTitle}</td>
-							<td
-								style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">${i.courseDesc}</td>
-							<td><a href="/VideoSSM/courseUpdateShow.do?id=${i.id} ">✎</a></td>
-							<td><a href="javascript:void(0);" id="deletedID"
-								onclick="delCourseById('#deletedID','${i.id}','${i.courseTitle}')">X</a></td>
+							<td><input type="checkbox" name="select" value="${k.adminId}"></td>
+							<td>${k.adminId}</td>
+							<td>${k.accounts}</td>
+							<td>${k.adminRemark}</td>
+							<td><a href="/VideoSSM/adminUpdateShow.do?id=${k.adminId} ">✎</a></td>
+							<td><a href="javascript:void(0);" id="del"
+								onclick="delAdminById('#del','${k.adminId}','${k.adminRemark}')">X</a></td>
 					</c:forEach>
-					
 					<tr>
 						<td colspan="2"><font>总共${count}条,当前第${page}页</font> <c:if
 								test="${count%5==0}">
@@ -112,7 +116,7 @@ th {
 								<c:set var="page" value="${count/5+1}">
 								</c:set>
 							</c:if> <c:forEach var="i" begin="1" end="${page}">
-								<a href="Back-Course-Show?page=${i}">第${i}页</a>
+								<a href="Back-Admin-Show?page=${i}">第${i}页</a>
 							</c:forEach>
 					</tr>
 				</tbody>
@@ -122,8 +126,11 @@ th {
 	</form>
 
 
+
+
 	<script type="text/javascript">
-		$(function() {
+
+	   $(function() {
 			$("#all").click(function() {
 				$("input[name='select']").prop("checked", this.checked);
 			})
@@ -140,9 +147,9 @@ th {
 			$("#ids").val(ids);
 		}
 		function showAddPage() {
-			location.href = "/VideoSSM/courseAddShow.do";
+			location.href = "/VideoSSM/AdminAddShow.do";
 		}
-		function delCourseById(Obj, id, title) {
+		function delAdminById(Obj, id, title) {
 
 			Confirm.show('温馨提示：', '确定要删除' + title + '么？', {
 				'Delete' : {
@@ -151,9 +158,10 @@ th {
 						var param = {
 							"id" : id
 						};
-						$.post("/VideoSSM/courseDelete.do", param, function(
+						$.post("/VideoSSM/adminDelete.do", param, function(
 								data) {
 							if (data == 'success') {
+								
 								Confirm.show('温馨提示：', '删除成功');
 								window.location.reload();
 								//$(Obj).parent().parent().remove();

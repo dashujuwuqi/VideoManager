@@ -160,7 +160,6 @@ public class BackVideoController {
 		SpeakerExample speakerExample=new SpeakerExample();
 		CourseExample courseExample=new CourseExample();
 		int count = videoService.selectLike(speakerId, courseId, "title", factor).size();
-		System.out.println("模糊查询的"+count);
 		req.setAttribute("count", count);
 		String pages=req.getParameter("page");
 		int page = pages == null || pages.equals("") ? 1 : Integer.valueOf(pages);
