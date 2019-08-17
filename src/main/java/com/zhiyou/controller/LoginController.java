@@ -28,15 +28,16 @@ public class LoginController {
 	UserServiceImpl userService;
 	@Autowired
 	AdminServiceImpl adminService;
+
 	@RequestMapping("validateEmail.do")
-	public void validateEmail(HttpServletRequest req,HttpServletResponse resp) {
-		//System.out.println("1111111111111111111");
+	public void validateEmail(HttpServletRequest req, HttpServletResponse resp) {
+		// System.out.println("1111111111111111111");
 		String email = req.getParameter("email");
 		UserExample example = new UserExample();
 		Criteria criteria = example.createCriteria();
 		criteria.andAccountsEqualTo(email);
 		List<User> list = userService.selectByExample(example);
-		if(list.size() == 0) {
+		if (list.size() == 0) {
 			try {
 				resp.getWriter().write("success");
 			} catch (Exception e) {
@@ -44,12 +45,13 @@ public class LoginController {
 			}
 		}
 	}
+
 	@RequestMapping("MailCheck.do")
-	public void MailCheck(HttpServletRequest req,HttpServletResponse resp) {
-		int a = (int)(Math.random()*9000)+1000;
-		//System.out.println(a);
+	public void MailCheck(HttpServletRequest req, HttpServletResponse resp) {
+		int a = (int) (Math.random() * 9000) + 1000;
+		// System.out.println(a);
 		String email = req.getParameter("mail");
-		//System.out.println(email);
+		// System.out.println(email);
 		MailUtil.setMain(email, String.valueOf(a));
 		String Yzm = String.valueOf(a);
 		try {
@@ -59,8 +61,9 @@ public class LoginController {
 			e.printStackTrace();
 		}
 	}
+
 	@RequestMapping("findPassword.do")
-	public String findPassword(HttpServletRequest req,HttpServletResponse resp) {
+	public String findPassword(HttpServletRequest req, HttpServletResponse resp) {
 		String email = req.getParameter("email2");
 		String password = req.getParameter("password2");
 		System.out.println(email);
@@ -75,26 +78,27 @@ public class LoginController {
 		userService.updateByExampleSelective(user, example);
 		return "index";
 	}
+
 	@RequestMapping("regUser.do")
-	public void regUser(HttpServletRequest req,HttpServletResponse resp) {
+	public void regUser(HttpServletRequest req, HttpServletResponse resp) {
 		String regForm = req.getParameter("regForm");
 		String[] split = regForm.split("&");
 		String[] emails = split[0].split("=");
 		String[] passwords = split[1].split("=");
-		String email=emails[1];
-		String password=passwords[1];
+		String email = emails[1];
+		String password = passwords[1];
 		try {
-			email = URLDecoder.decode(email,"UTF-8");
+			email = URLDecoder.decode(email, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//System.out.println(regForm);
+		// System.out.println(regForm);
 		User user = new User();
 		user.setAccounts(email);
 		user.setPassword(DigestUtils.md5DigestAsHex(password.getBytes()));
 		userService.insertSelective(user);
-		req.setAttribute("user",user);
+		req.setAttribute("user", user);
 		try {
 			resp.getWriter().write("success");
 		} catch (IOException e) {
@@ -102,14 +106,15 @@ public class LoginController {
 			e.printStackTrace();
 		}
 	}
+
 	@RequestMapping("validateLoginEmail.do")
-	public void validateLoginEmail(HttpServletRequest req,HttpServletResponse resp) {
+	public void validateLoginEmail(HttpServletRequest req, HttpServletResponse resp) {
 		String email = req.getParameter("email");
 		UserExample example = new UserExample();
 		Criteria criteria = example.createCriteria();
 		criteria.andAccountsEqualTo(email);
 		List<User> list = userService.selectByExample(example);
-		if(list.size() >0 ) {
+		if (list.size() > 0) {
 			try {
 				resp.getWriter().write("success");
 			} catch (Exception e) {
@@ -117,16 +122,17 @@ public class LoginController {
 			}
 		}
 	}
+
 	@RequestMapping("userLogin.do")
-	public void userLogin(String loginForm,HttpServletRequest req,HttpServletResponse resp) {
-		//System.out.println(loginForm);
+	public void userLogin(String loginForm, HttpServletRequest req, HttpServletResponse resp) {
+		// System.out.println(loginForm);
 		String[] split = loginForm.split("&");
 		String[] emails = split[0].split("=");
 		String[] passwords = split[1].split("=");
-		String email=emails[1];
-		String password=passwords[1];
+		String email = emails[1];
+		String password = passwords[1];
 		try {
-			email = URLDecoder.decode(email,"UTF-8");
+			email = URLDecoder.decode(email, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -137,8 +143,8 @@ public class LoginController {
 		password = DigestUtils.md5DigestAsHex(password.getBytes());
 		criteria.andPasswordEqualTo(password);
 		List<User> list = userService.selectByExample(example);
-		if(list.size() > 0) {
-			req.getSession().setAttribute("user",list.get(0));
+		if (list.size() > 0) {
+			req.getSession().setAttribute("user", list.get(0));
 			try {
 				resp.getWriter().write("success");
 			} catch (IOException e) {
@@ -147,15 +153,16 @@ public class LoginController {
 			}
 		}
 	}
+
 	@RequestMapping("validateAdminEmail.do")
-	public void validateAdminEmail(HttpServletRequest req,HttpServletResponse resp) {
+	public void validateAdminEmail(HttpServletRequest req, HttpServletResponse resp) {
 		String account = req.getParameter("email");
-		//System.out.println(account);
+		// System.out.println(account);
 		AdminExample example = new AdminExample();
 		com.zhiyou.model.AdminExample.Criteria criteria = example.createCriteria();
 		criteria.andAccountsEqualTo(account);
 		List<Admin> list = adminService.selectByExample(example);
-		if(list.size()>0) {
+		if (list.size() > 0) {
 			try {
 				resp.getWriter().write("success");
 			} catch (IOException e) {
@@ -164,15 +171,16 @@ public class LoginController {
 			}
 		}
 	}
+
 	@RequestMapping("adminLogin.do")
-	public void adminLogin(String loginForm,HttpServletRequest req,HttpServletResponse resp) {
+	public void adminLogin(String loginForm, HttpServletRequest req, HttpServletResponse resp) {
 		String[] split = loginForm.split("&");
 		String[] emails = split[0].split("=");
 		String[] passwords = split[1].split("=");
-		String account=emails[1];
-		String password=passwords[1];
+		String account = emails[1];
+		String password = passwords[1];
 		try {
-			account = URLDecoder.decode(account,"UTF-8");
+			account = URLDecoder.decode(account, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -181,9 +189,9 @@ public class LoginController {
 		com.zhiyou.model.AdminExample.Criteria criteria = example.createCriteria();
 		criteria.andAccountsEqualTo(account);
 		List<Admin> list = adminService.selectByExample(example);
-		if(list.get(0).getPassword().equals(password)) {
+		if (list.get(0).getPassword().equals(password)) {
 			try {
-				req.getSession().setAttribute("admin",list.get(0));
+				req.getSession().setAttribute("admin", list.get(0));
 				resp.getWriter().write("success");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -191,11 +199,13 @@ public class LoginController {
 			}
 		}
 	}
+
 	@RequestMapping("AdminShow.do")
 	public String AdminShow(HttpServletRequest req) {
 		System.out.println("111111111111111");
 		return "/background/BackgroundCourseAdd";
 	}
+
 	@RequestMapping("loginOut.do")
 	public String loginOut(HttpServletRequest req) {
 		req.getSession().removeAttribute("user");

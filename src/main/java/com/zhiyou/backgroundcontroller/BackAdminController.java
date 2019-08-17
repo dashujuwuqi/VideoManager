@@ -1,13 +1,16 @@
 package com.zhiyou.backgroundcontroller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.zhiyou.backgroundservice.BackAdminService;
 import com.zhiyou.backgroundutil.VideoResult;
@@ -52,14 +55,42 @@ public class BackAdminController {
 	}
 	
 	@RequestMapping("AdminAddShow.do")
-	public String adminAddShow() {
+	public String adminAddShow(HttpServletRequest req,HttpServletResponse resp) {
 		return "background/BackgroundAdminAdd";
 	}
 	
 	@RequestMapping("adminAdd.do")
-	public String adminAddSuccess(Admin admin) {
+	public String adminAddSuccess(Admin admin,HttpServletRequest req) {
 		adminService.insert(admin);
-		return "forward:AdminShowAgain";
+		return "redirect:AdminShowAgain";
 		
+	}
+	
+	@RequestMapping("adminDelete.do")
+	public void adminDeleteOne(int id,HttpServletResponse resp,HttpServletRequest req) {
+		System.out.println(id);
+		if (id==1) {
+		}else {
+			adminService.deleteByPrimaryKey(id);
+			try {
+				resp.getWriter().write("success");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	@RequestMapping("adminDeleteAll.do")
+	public String adminDeleteMany(String ids) {
+		List<Integer> list = JSON.parseArray(ids, Integer.class);
+		if (list.get(0)==1) {
+			list.remove(0);
+		}
+		for (Integer id : list) {
+			adminService.deleteByPrimaryKey(id);
+		}
+		return "redirect:AdminShowAgain";
 	}
 }

@@ -67,11 +67,11 @@ display:inline-block;
 
 	<div class="jumbotron" style="padding-top: 15px; padding-bottom: 15px;">
 		<div class="container">
-			<h2>视频管理</h2>
+			<h2>管理员管理</h2>
 		</div>
 	</div>
 
-	<form action="/VideoSSM/courseDeleteAll.do" id="videoForm">
+	<form action="/VideoSSM/adminDeleteAll.do" id="videoForm">
 		<div class="container">
 			<button onclick="showAddPage()" type="button"
 				class="btn btn-info dropdown-toggle" data-toggle="dropdown"
@@ -91,7 +91,6 @@ display:inline-block;
 						<th>序号</th>
 						<th style="width: 16%">账号</th>
 						<th style="width: 36%">介绍</th>
-						<th>编辑</th>
 						<th>删除</th>
 					</tr>
 				</thead>
@@ -103,7 +102,6 @@ display:inline-block;
 							<td>${k.adminId}</td>
 							<td>${k.accounts}</td>
 							<td>${k.adminRemark}</td>
-							<td><a href="/VideoSSM/adminUpdateShow.do?id=${k.adminId} ">✎</a></td>
 							<td><a href="javascript:void(0);" id="del"
 								onclick="delAdminById('#del','${k.adminId}','${k.adminRemark}')">X</a></td>
 					</c:forEach>
@@ -129,7 +127,7 @@ display:inline-block;
 
 
 	<script type="text/javascript">
-
+	
 	   $(function() {
 			$("#all").click(function() {
 				$("input[name='select']").prop("checked", this.checked);
@@ -147,10 +145,17 @@ display:inline-block;
 			$("#ids").val(ids);
 		}
 		function showAddPage() {
+			if (${admin.adminId}!=1) {
+				alert('对不起您不是超级管理员');
+			}else{
 			location.href = "/VideoSSM/AdminAddShow.do";
 		}
+		}
 		function delAdminById(Obj, id, title) {
-
+			if (${admin.adminId}!=1) {
+				alert('对不起您不是超级管理员');
+			}else{
+				
 			Confirm.show('温馨提示：', '确定要删除' + title + '么？', {
 				'Delete' : {
 					'primary' : true,
@@ -166,12 +171,13 @@ display:inline-block;
 								window.location.reload();
 								//$(Obj).parent().parent().remove();
 							} else {
-								Confirm.show('温馨提示：', '操作失败');
+								Confirm.show('温馨提示：', '超级管理员不可删除');
 							}
 						});
 					}
 				}
 			});
+			}
 		}
 	</script>
 
