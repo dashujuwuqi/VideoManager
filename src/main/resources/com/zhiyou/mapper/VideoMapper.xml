@@ -110,6 +110,18 @@
     from video
     where video_id = #{videoId,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectLike" resultMap="BaseResultMap">
+  	select * from video v,speaker s
+	<trim prefixOverrides="and" prefix="where"> 
+	<if test="factor!=null and factor!=''"> ${subject} like "%"
+				#{factor} "%" </if>
+			<if test="speakerId!=null and speakerId!=0">and v.speaker_id = #{speakerId}</if>
+			<if test="courseId!=null and courseId!=0">and course_id = #{courseId}</if>
+			and v.speaker_id=s.id 
+		</trim>
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from video
     where video_id = #{videoId,jdbcType=INTEGER}

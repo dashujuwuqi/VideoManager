@@ -4,7 +4,6 @@ import com.zhiyou.model.Video;
 import com.zhiyou.model.VideoExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
 public interface VideoMapper {
     long countByExample(VideoExample example);
@@ -30,4 +29,6 @@ public interface VideoMapper {
     int updateByPrimaryKey(Video record);
     
     List<Video> select();
+    
+    List<Video> selectLike(@Param("speakerId")String speakerId, @Param("courseId")String courseId,@Param("subject")String subject, @Param("factor")String factor); 
 }

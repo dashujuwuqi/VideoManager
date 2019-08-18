@@ -151,4 +151,33 @@ public class BackVideoController {
 		}
 		 return "forward:VideoShowAgain";
 	}
+	
+	@RequestMapping("videoSelectLike.do")
+	public String videoSelectLike(HttpServletRequest req,String speakerId,String courseId,String factor) {
+		req.setAttribute("speakerId", speakerId);
+		req.setAttribute("courseId", courseId);
+		req.setAttribute("factor", factor);
+		SpeakerExample speakerExample=new SpeakerExample();
+		CourseExample courseExample=new CourseExample();
+		int count = videoService.selectLike(speakerId, courseId, "title", factor).size();
+		req.setAttribute("count", count);
+		String pages=req.getParameter("page");
+		int page = pages == null || pages.equals("") ? 1 : Integer.valueOf(pages);
+		req.setAttribute("page", page);
+		PageHelper.startPage(page, 5);
+		List<Video> list = videoService.selectLike(speakerId, courseId, "title", factor);
+		List<Course> courses = courseService.selectByExample(courseExample);
+		List<Speaker> speakers = speakerService.selectByExample(speakerExample);
+		VideoResult result=new VideoResult();
+		VideoResult result2=new VideoResult();
+		VideoResult result3=new VideoResult();
+		result2.setData(courses);
+		result3.setData(speakers);
+		req.setAttribute("result2", result2);
+		req.setAttribute("result3", result3);
+		result.setData(list);
+		req.setAttribute("result", result);
+		return "background/BackgroundVideoShow";
+		
+	}
 }

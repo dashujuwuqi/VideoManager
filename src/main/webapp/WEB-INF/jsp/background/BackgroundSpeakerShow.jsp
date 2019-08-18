@@ -36,9 +36,10 @@ th {
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-9">
 				<ul class="nav navbar-nav">
-					<li><a href="/VideoSSM/videoShow.do">视频管理</a></li>
-					<li class="active"> <a href="/VideoSSM/speakerShow.do">主讲人管理</a></li>
-					<li ><a href="/VideoSSM/courseShow.do">课程管理</a></li>
+					<li><a href="/VideoSSM/Back-Video-Show">视频管理</a></li>
+					<li class="active"> <a href="/VideoSSM/Back-Speaker-Show">主讲人管理</a></li>
+					<li ><a href="/VideoSSM/Back-Course-Show">课程管理</a></li>
+					<li><a href="/VideoSSM/Back-Admin-Show">管理员管理</a></li>
 				</ul>
 				<p class="navbar-text navbar-right">
 					<span>${admin.accounts}</span> <i class="glyphicon glyphicon-log-in"
@@ -126,7 +127,7 @@ th {
 	<script type="text/javascript">
 		$(function() {
 			$("#all").click(function() {
-				$("input[name='select']").attr("checked", this.checked);
+				$("input[name='select']").prop("checked", this.checked);
 			})
 
 		})
