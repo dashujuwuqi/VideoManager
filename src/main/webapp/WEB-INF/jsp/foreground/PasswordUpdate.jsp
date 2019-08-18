@@ -35,9 +35,9 @@
 	<menu>
 		<div class="container clearfix">
 			<ul class="clearfix f_left">
-				<li><a href="/VideoSSM/index.jsp">首页</a></li>
+				<li><a href="/VideoSSM/index">首页</a></li>
 				
-				<li class="menu_active"><a href="/VideoSSM/foreground/PersonalCenter.jsp">个人中心</a></li>
+				<li class="menu_active"><a href="/VideoSSM/foreground/PersonalCenter.do">个人中心</a></li>
 			</ul>
 			
 			<div id="user_bar">
@@ -60,22 +60,18 @@
             <h2>我的资料</h2>
             <div id="profile_tab">
                 <ul class="profile_tab_header f_left clearfix">
-                    <li><a href="/VideoSSM/userUpadteShow.do">更改资料</a></li>
+                    <li><a href="/VideoSSM/foreground/UserUpadte.do">更改资料</a></li>
                     <li class="profile_tab_line">|</li>
-                    <li><a href="/VideoSSM/foreground/AvatarUpload.jsp">更改头像</a></li>
+                    <li><a href="/VideoSSM/foreground/AvatarUpload.do">更改头像</a></li>
                     <li class="profile_tab_line">|</li>
-                    <li><a href="/VideoSSM/foreground/PasswordUpdate.jsp">密码安全</a></li>
+                    <li><a href="/VideoSSM/foreground/PasswordUpdate.do">密码安全</a></li>
                 </ul>
                 <div class="proflle_tab_body">
                     <div class="proflle_tab_workplace clearfix">
                         <div class="profile_avatar_area">
-                        
-                           
+                                                  
 		                         <img id="avatar" width="200px;" src="${user.imgurl }" alt="">
-		                      
-		                      
-		                      
-                           
+		                      		                      		                                              
                         </div>
                       
                         <div class="profile_ifo_area">
@@ -93,8 +89,8 @@
                                     <input id="rePassword"  type="password" name="rePassword"><span id="passMsg"></span>
                                 </div>
                                 <div class="form_submit dd">
-                                    <input   value="保　存" type="submit" id="subBtn">
-                                    <a href="/VideoSSM/foreground/PersonalCenter.jsp">取消</a>
+                                    <input   value="保　存" type="submit" id="subBtn"/>
+                                    <a href="/VideoSSM/foreground/PersonalCenter.do">取消</a>
                                 </div>
                             </form>
                         </div>
@@ -119,15 +115,17 @@
  <script type="text/javascript" src="/VideoSSM/js/jquery-3.4.1.js"></script>
  <script type="text/javascript">
  $(function(){
+	 
 		$("#subBtn").attr('disabled',true);
+		
 		$("#originalPassword").blur(originalPasswordCheck);
 		$("#newPassword").blur(rePasswordCheck);
 		$("#rePassword").blur(rePasswordCheck);
 		$("#subBtn").click(rePasswordCheck);
+		
 		$("#subBtn").click(originalPasswordCheck);
 	});
 	function originalPasswordCheck(){
-    
 		$.ajax({
 		url:"${pageContext.request.contextPath}/originalPasswordCheck.do",
 		type:"post",		
@@ -140,8 +138,7 @@
 				$("#oldMsg").html("<font color='green'>原密码正确!</font>");
 			}else{
 				$("#subBtn").attr('disabled',true);
-				$("#oldMsg").html("<font color='red'>原密码错误!</font>");
-			    
+				$("#oldMsg").html("<font color='red'>原密码错误!</font>");			    
 			}
 		}
 	});

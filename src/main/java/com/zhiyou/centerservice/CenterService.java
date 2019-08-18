@@ -1,4 +1,4 @@
-package com.zhiyou.service.center;
+package com.zhiyou.centerservice;
 
 import com.zhiyou.model.User;
 

@@ -44,9 +44,9 @@
 
 			<c:if test="${not empty user.accounts  }">
 				<div id="userAccount" style="float: right">
-					<a href="/VideoSSM/loginOut.do">退出</a> <a
-						href="/VideoSSM/foreground/PersonalCenter.jsp">
-						${user.accounts}</a>
+					<a href="/VideoSSM/loginOut.do">退出</a>
+					<a href="/VideoSSM/foreground/PersonalCenter.do">个人中心</a>
+					<a href="/VideoSSM/foreground/PersonalCenter.do">${user.accounts}</a>				
 				</div>
 			</c:if>
 

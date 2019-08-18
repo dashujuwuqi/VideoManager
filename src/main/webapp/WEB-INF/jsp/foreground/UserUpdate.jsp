@@ -42,9 +42,9 @@
 	<menu>
 		<div class="container clearfix">
 			<ul class="clearfix f_left">
-				<li><a href="/VideoSSM/index.jsp">首页</a></li>
+				<li><a href="/VideoSSM/index">首页</a></li>
 
-				<li class="menu_active"><a href="/VideoSSM/foreground/PersonalCenter.jsp">个人中心</a></li>
+				<li class="menu_active"><a href="/VideoSSM/foreground/PersonalCenter.do">个人中心</a></li>
 			</ul>
 
 			<div id="user_bar">
@@ -64,11 +64,11 @@
 		<h2>我的资料</h2>
 		<div id="profile_tab">
 			<ul class="profile_tab_header f_left clearfix">
-				<li><a href="/VideoSSM/userUpadteShow.do">更改资料</a></li>
+				<li><a href="/VideoSSM/foreground/UserUpadte.do">更改资料</a></li>
 				<li class="profile_tab_line">|</li>
-				<li><a href="/VideoSSM/foreground/AvatarUpload.jsp">更改头像</a></li>
+				<li><a href="/VideoSSM/foreground/AvatarUpload.do">更改头像</a></li>
 				<li class="profile_tab_line">|</li>
-				<li><a href="/VideoSSM/foreground/PasswordUpdate.jsp">密码安全</a></li>
+				<li><a href="/VideoSSM/foreground/PasswordUpdate.do">密码安全</a></li>
 			</ul>
 			<div class="proflle_tab_body">
 				<div class="proflle_tab_workplace clearfix">
