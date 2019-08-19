@@ -110,26 +110,32 @@ public class CenterController {
 		//取原始文件名
 		String oldName  = imageFile.getOriginalFilename();
 		//http://192.168.203.128/image/2019/08/18/1566095878886429.jpg
-		System.out.println(user.getImgurl());
+	
 		String[] split = user.getImgurl().split("/");
 		
-		System.out.println(456);
-		System.out.println(split[split.length-1]);
+		
 		//生成新文件名
 		String newName = genImageName();
 		newName = newName+oldName.substring(oldName.lastIndexOf("."));
+		
 		//图片上传
-		String imagePath = new DateTime().toString("/yyyy/MM/dd");
+		String imagePath = new DateTime().toString("/yyyy/MM/dd");		
+		
 		boolean result=FtpUtil.uploadFile("192.168.203.128", 21, "fandaozhuang", "250", "/home/fandaozhuang/image", 
 				imagePath, newName, imageFile.getInputStream());
-//		http://192.168.203.128/image/2019/08/17/1566038667689310.jpg
+		System.out.println("=======================split[split.length-1]================="+split[split.length-1]);
+		boolean delFile = deleteFile(split[split.length-1],req,resp);//httest.jpeg  1566100455949333.jpg
+		//boolean delFile = delFile("192.168.203.128",21,"fandaozhuang", "250", "/home/fandaozhuang/image/2019/08/18");
+		System.out.println("===========================deleteFile============="+delFile);
+//		http://192.168.203.128/image/2019/08/18/1566121910994521.jpg
 		String url="http://192.168.203.128/image"+imagePath+"/"+newName;	
 		User u2 = new User();
 		u2.setId(user.getId());
-		u2.setImgurl(url);
-		deleteFile(split[split.length-1], req, resp);
-		centerService.update(u2); 
-		req.getSession().setAttribute("user",u2);
+		u2.setImgurl(url);    
+		centerService.update(u2);
+		//更新记录后查询用户信息
+		User user2 = centerService.selectById(user.getId());
+		req.getSession().setAttribute("user",user2);
 		return "redirect:/foreground/PersonalCenter.do";
 	}
 	/**
@@ -147,9 +153,13 @@ public class CenterController {
 		
 		return str;
 	}
+	
+	
 	//删除文件
 	public boolean deleteFile(String FileName,HttpServletRequest req,HttpServletResponse resp) {
 		User user = (User) req.getSession().getAttribute("user");
+		String imgurl = user.getImgurl();
+		//"192.168.203.128", 21, "fandaozhuang", "250", "/home/fandaozhuang/image"
         boolean success = false;
         FTPClient ftp = new FTPClient();
         ftp.setControlEncoding("GBK");
@@ -163,10 +173,8 @@ public class CenterController {
                 return success;
             }
             ftp.setFileType(FTPClient.BINARY_FILE_TYPE);
-            System.out.println(123);
-            System.out.println(user.getImgurl());
-            ftp.makeDirectory(user.getImgurl());
-            ftp.changeWorkingDirectory(user.getImgurl());
+            ftp.makeDirectory("/home/fandaozhuang/image"+imgurl.substring(28,39));
+            ftp.changeWorkingDirectory("/home/fandaozhuang/image"+imgurl.substring(28,39));
             success = ftp.deleteFile(FileName);
             ftp.logout();
         } catch (IOException e) {

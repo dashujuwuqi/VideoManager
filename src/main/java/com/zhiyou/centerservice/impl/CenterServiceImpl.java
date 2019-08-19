@@ -14,5 +14,10 @@ public class CenterServiceImpl implements CenterService{
 	public void update(User user) {
 		userMapper.updateByPrimaryKeySelective(user);
 	}
+	@Override
+	public User selectById(int userId) {
+		// TODO Auto-generated method stub
+		return userMapper.selectByPrimaryKey(userId);
+	}
 
 }
